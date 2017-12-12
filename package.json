@@ -1,0 +1,23 @@
+{
+  "name": "etd",
+  "version": "1.0.0",
+  "description": "A socket.io chat app which encrypts the user's name and allows them to participate in a discussion on a random topic",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arminderk/ETD.git"
+  },
+  "author": "Arminder Khinda",
+  "license": "ISC",
+  "dependencies": {
+    "socket.io": "*",
+    "express": "*"
+  },
+  "bugs": {
+    "url": "https://github.com/arminderk/ETD/issues"
+  },
+  "homepage": "https://github.com/arminderk/ETD#readme"
+}
