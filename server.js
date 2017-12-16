@@ -24,6 +24,11 @@ io.sockets.on('connection', function(socket) {
     console.log('Disconnected: %s sockets connected', connections.length);
   });
   
+  socket.on('topic', function(data) {
+    var topic = data.topic;
+    io.sockets.emit('rTopic', {'topic': topic});
+  });
+  
   // Message
   socket.on('message', function(data) {
     io.sockets.emit('new message', {'msg': data});

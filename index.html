@@ -16,7 +16,7 @@
       }
       
       #messageArea {
-        display: none;
+/*        display: none;*/
       }
     </style>
   </head>
@@ -45,11 +45,12 @@
         <div class="col-md-4">
           <div class="card">
             <div class="card-body bg-info">
-              <h3 class="text-white">Users Online</h3>
+              <h3 class="text-white" style="margin-bottom: 15px">Users Online</h3>
               <ul class="list-group" id="users"></ul>
             </div>
           </div>
         </div>
+        <br><br>
         <div class="col-md-8">
           <div class="chat" id="chat"></div>
           <form id="messageForm">
@@ -78,6 +79,8 @@
         var $users = $('#users');
         var $username = $('#username');
         
+        $messageArea.hide();
+        
         /****** Random Topic ******/
         var topic = ["Java", "Node.js", "Favorite Movie", "Call of Duty", "Christmas"];
 
@@ -87,7 +90,12 @@
         }
         
         var randomTopic = randomTopic();
-        $('#topic').text("Topic of the Day: " + randomTopic);
+        socket.emit('topic', {'topic': randomTopic});
+        
+        socket.on('rTopic', function(data) {
+          var rTopic = data.topic;
+          $('#topic').text("Topic of the Day: " + rTopic);
+        });
         
         /***** Cipher *****/
         function cipherAlglorithm(username) {
@@ -121,7 +129,7 @@
         });
         
         socket.on('new message', function(data) {
-          $chat.append('<div class="bg-dark text-white" style="margin-bottom: 20px">' + data.msg + '<div>');
+          $chat.append('<div class="bg-dark text-white" style="margin-bottom: 20px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px;">' + data.msg + '<div>');
         });
         
         $userForm.submit(function(e) {
