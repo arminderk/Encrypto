@@ -31,7 +31,7 @@ io.sockets.on('connection', function(socket) {
   
   // Message
   socket.on('message', function(data) {
-    io.sockets.emit('new message', {'msg': data});
+    io.sockets.emit('new message', {'msg': data, user: socket.username});
   });
   
   // New User Has Joined
