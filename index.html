@@ -42,7 +42,11 @@
       </div>
       
       <div id="messageArea" class="row">
-        <div class="col-md-4">
+        <div class="col-md-12" style="margin-bottom: 25px">
+            <button id="decrypt" class="btn btn-success">Decrypt Username</button>
+        </div>
+
+        <div class="col-md-4" style="margin-bottom: 80px">
           <div class="card">
             <div class="card-body bg-info">
               <h3 class="text-white" style="margin-bottom: 15px">Users Online</h3>
@@ -50,7 +54,7 @@
             </div>
           </div>
         </div>
-        <br><br>
+
         <div class="col-md-8">
           <div class="chat" id="chat"></div>
           <form id="messageForm">
@@ -73,6 +77,7 @@
         var $messageForm = $('#messageForm');
         var $message = $('#message');
         var $chat = $('#chat');
+        var $decryptButton = $('#decrypt')
         var $messageArea = $('#messageArea');
         var $userFormArea = $('#userFormArea');
         var $userForm = $('#userForm');
@@ -124,12 +129,12 @@
         }
         
         /***** Decrypt *****/
-        function decryptCipher(message) {
+        function decryptCipher(username) {
           var ciphered = "";
           var c = 0;
           
-          for(var i = 0; i < message.length; i++) {
-            c = message.fromCharCode(i);
+          for(var i = 0; i < username.length; i++) {
+            c = username.charCodeAt(i);
             
             if(c == 32) {
               c = String.fromCharCode(32);
@@ -147,6 +152,17 @@
           }
           return ciphered;
         }
+
+        /****** Decrypt Button Clicked ******/
+        $decryptButton.click(function() {
+          socket.emit('decrypt', {message: 'Start decryption'});
+        });
+
+        /***** Decrypt the Username *****/
+        socket.on('username', function(data) {
+          var decrypted = decryptCipher(data.user);
+          socket.emit('decryptedUserName', {'decryptedUser': decrypted});
+        });
         
         /****** Message Form ******/
         $messageForm.submit(function(e) {
@@ -156,9 +172,8 @@
         });
         
         socket.on('new message', function(data) {
-          $chat.append('<div class="bg-light" style="margin-bottom: 20px; padding: 10px;"><strong>'
-           + data.user + '</strong>: ' + data.msg  + " "
-           + '<button type="button" id="decrypt" class="btn btn-sm btn-success float-right" style="margin: 0; padding: 3px">Decrypt</button>' + '<div>');
+          $chat.append('<div class="bg-secondary" style="margin-bottom: 20px; padding: 10px;"><strong>'
+           + data.user + '</strong>: ' + data.msg  + " " + '<div>');
         });
         
         $userForm.submit(function(e) {
@@ -167,11 +182,11 @@
             $userAlert.hide();
             var cipheredUserName = cipherAlglorithm($username.val());
             socket.emit('new user', cipheredUserName, function(data) {
-            if(data) {
-              $userFormArea.hide();
-              $messageArea.show();
-            }
-          });
+              if(data) {
+                $userFormArea.hide();
+                $messageArea.show();
+              }
+            });
           }
           else {
             $userAlert.show();

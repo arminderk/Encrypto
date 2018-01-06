@@ -41,9 +41,20 @@ io.sockets.on('connection', function(socket) {
     users.push(socket.username);
     updateUserNames();
   });
+
+  socket.on('decryptedUserName', function(data) {
+    for(var i = 0; i<users.length; i++) {
+      users[users.indexOf(socket.username)] = data.decryptedUser;
+      updateUserNames();
+    }
+  });
   
   function updateUserNames() {
     io.sockets.emit('get users', users);
   }
+
+  socket.on('decrypt', function(data) {
+    socket.emit('username', {'user': socket.username});
+  });
   
 });
