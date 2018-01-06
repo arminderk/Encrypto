@@ -24,6 +24,10 @@
       
       <h3 class="font-italic" style="margin-bottom: 60px" id="topic"></h3>
       
+      <div id="user-alert" class="alert alert-danger">
+        <span>Please Enter a Username</span>
+      </div>
+
       <div id="userFormArea" class="row">
         <div class="col-md-12">
           <form id="userForm">
@@ -74,8 +78,10 @@
         var $userForm = $('#userForm');
         var $users = $('#users');
         var $username = $('#username');
+        var $userAlert = $('#user-alert');
         
         $messageArea.hide();
+        $userAlert.hide();
         
         /****** Random Topic ******/
         var topic = ["Java", "Node.js", "Favorite Movie", "Call of Duty", "Christmas"];
@@ -104,7 +110,7 @@
               c = String.fromCharCode(32);
             }
             else {
-              if(c > 119) {
+              if((c > 119 && c <= 122) || (c > 87 && c <= 90)) {
                 c = String.fromCharCode(c - 23);
               }
               else{
@@ -117,6 +123,31 @@
           return ciphered;
         }
         
+        /***** Decrypt *****/
+        function decryptCipher(message) {
+          var ciphered = "";
+          var c = 0;
+          
+          for(var i = 0; i < message.length; i++) {
+            c = message.fromCharCode(i);
+            
+            if(c == 32) {
+              c = String.fromCharCode(32);
+            }
+            else {
+              if((c > 96 && c <= 99) || c > 64 && c <= 67) {
+                c = String.fromCharCode(c + 23);
+              }
+              else {
+                c = String.fromCharCode(c - 3);
+              }
+            }
+            
+            ciphered += c;
+          }
+          return ciphered;
+        }
+        
         /****** Message Form ******/
         $messageForm.submit(function(e) {
           e.preventDefault();
@@ -125,18 +156,26 @@
         });
         
         socket.on('new message', function(data) {
-          $chat.append('<div class="bg-light" style="margin-bottom: 20px; padding-left: 10px; padding-top: 5px; padding-bottom: 5px;"><strong>' + data.user + '</strong>: ' + data.msg + '<div>');
+          $chat.append('<div class="bg-light" style="margin-bottom: 20px; padding: 10px;"><strong>'
+           + data.user + '</strong>: ' + data.msg  + " "
+           + '<button type="button" id="decrypt" class="btn btn-sm btn-success float-right" style="margin: 0; padding: 3px">Decrypt</button>' + '<div>');
         });
         
         $userForm.submit(function(e) {
           e.preventDefault();
-          var cipheredUserName = cipherAlglorithm($username.val());
-          socket.emit('new user', cipheredUserName, function(data) {
+          if($username.val() != "") {
+            $userAlert.hide();
+            var cipheredUserName = cipherAlglorithm($username.val());
+            socket.emit('new user', cipheredUserName, function(data) {
             if(data) {
               $userFormArea.hide();
               $messageArea.show();
             }
           });
+          }
+          else {
+            $userAlert.show();
+          }
           $username.val('');
         });
         
