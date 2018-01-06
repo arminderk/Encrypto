@@ -31,7 +31,7 @@ io.sockets.on('connection', function(socket) {
   
   // Message
   socket.on('message', function(data) {
-    io.sockets.emit('new message', {'msg': data, user: socket.username});
+    io.sockets.emit('new message', {'msg': data, user: users[users.indexOf(socket.username)]});
   });
   
   // New User Has Joined
@@ -45,8 +45,8 @@ io.sockets.on('connection', function(socket) {
   socket.on('decryptedUserName', function(data) {
     for(var i = 0; i<users.length; i++) {
       users[users.indexOf(socket.username)] = data.decryptedUser;
-      updateUserNames();
     }
+    updateUserNames();
   });
   
   function updateUserNames() {
