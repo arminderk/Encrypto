@@ -17,27 +17,29 @@
     </style>
   </head>
   
-  <body>
+  <body style="background: #708090">
     <div class="container">
       
       <h1 class="display-5 text-center" style="margin-bottom: 50px">Welcome to ETD</h1>
       
-      <h3 class="font-italic" style="margin-bottom: 60px" id="topic"></h3>
-      
-      <div id="user-alert" class="alert alert-danger">
-        <span>Please Enter a Username</span>
-      </div>
+      <div class="user-container" style="margin: 0 auto; background: #E8E8E8; width: 50%; padding: 4%; border-radius: 25px">
+        <h3 class="font-italic" style="margin-bottom: 40px" id="topic"></h3>
+        
+        <div id="user-alert" class="alert alert-danger" style="margin-bottom: 20px">
+          <span>Please Enter a Username</span>
+        </div>
 
-      <div id="userFormArea" class="row">
-        <div class="col-md-12">
-          <form id="userForm">
-            <div class="form-group">
-              <label>Enter Username</label>
-              <input class="form-control" id="username">
-              <br>
-              <input type="submit" class="btn btn-primary" value="Join">
-            </div>
-          </form>
+        <div id="userFormArea" class="row">
+          <div class="col-md-12">
+            <form id="userForm">
+              <div class="form-group">
+                <label>Enter Your Username:</label>
+                <input class="form-control" id="username">
+                <br>
+                <input type="submit" class="btn btn-primary" value="Join">
+              </div>
+            </form>
+          </div>
         </div>
       </div>
       
@@ -79,7 +81,7 @@
         var $chat = $('#chat');
         var $decryptButton = $('#decrypt')
         var $messageArea = $('#messageArea');
-        var $userFormArea = $('#userFormArea');
+        var $userFormArea = $('.user-container');
         var $userForm = $('#userForm');
         var $users = $('#users');
         var $username = $('#username');
@@ -156,6 +158,7 @@
         /****** Decrypt Button Clicked ******/
         $decryptButton.click(function() {
           socket.emit('decrypt', {message: 'Start decryption'});
+          $decryptButton.prop('disabled', true);
         });
 
         /***** Decrypt the Username *****/
