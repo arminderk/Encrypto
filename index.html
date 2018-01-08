@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Encrypted Topic Discussion</title>
+    <title>Encrypto</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
@@ -20,11 +20,11 @@
   <body style="background: #5281af">
     <div class="container">
       
-      <h1 class="display-5 text-center" style="margin-bottom: 50px">Welcome to ETD</h1>
+      <h1 class="display-5 text-center" style="margin-bottom: 50px">Welcome to Encrypto</h1>
 
       <h3 class="font-italic text-center" style="margin-bottom: 40px" id="topic"></h3>
       
-      <div class="user-container" style="margin: 0 auto; background: #E8E8E8; width: 50%; padding: 4%; border-radius: 25px">
+      <div class="user-container" style="margin: 0 auto; background: #E8E8E8; width: 40%; padding: 2.75%; border-radius: 25px">
         
         <div id="user-alert" class="alert alert-danger" style="margin-bottom: 20px">
           <span>Please Enter a Username</span>
@@ -34,7 +34,7 @@
           <div class="col-md-12">
             <form id="userForm">
               <div class="form-group">
-                <label>Enter Your Username:</label>
+                <label>Enter an username:</label>
                 <input class="form-control" id="username">
                 <br>
                 <input type="submit" class="btn btn-primary" value="Join">
@@ -91,7 +91,7 @@
         $messageArea.hide();
         $userAlert.hide();
         
-        /****** Random Topic ******/
+        /****** Pick a Random Topic ******/
         var topic = ["Java", "Node.js", "Favorite Movie", "Call of Duty", "Christmas"];
 
         function randomTopic() {
@@ -104,10 +104,10 @@
         
         socket.on('rTopic', function(data) {
           var rTopic = data.topic;
-          $('#topic').text("Topic: " + rTopic);
+          $('#topic').html("<u>Topic: " + rTopic + "</u>");
         });
         
-        /***** Cipher *****/
+        /***** Cipher (Encrypt) *****/
         function cipherAlglorithm(username) {
           var ciphered = "";
           var c = 0;
@@ -198,6 +198,7 @@
           $username.val('');
         });
         
+        /***** Display All Users *****/
         socket.on('get users', function(data) {
           var html = '';
           for(var i = 0; i<data.length; i++) {
