@@ -8,7 +8,7 @@
 
 * The user can choose to decrypt their username by clicking a button. Doing so, will allow all other users to see their decrypted username. 
 
-* Link to Heroku: https://encrypto.herokuapp.com/
+* Link to Heroku: encrypto.herokuapp.com
 
 
 #### Technologies Used: Node.js, Socket.io, Express.js, HTML, and Bootstrap
