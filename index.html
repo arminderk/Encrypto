@@ -11,8 +11,20 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <style>
+      html {
+        margin: 0;
+        padding: 0;
+      }
       body {
+        padding: 0;
         margin-top: 30px;
+      }
+      .head-background {
+        position: absolute;
+        display: block;
+        top: 0;
+        left: 0;
+        z-index: -20;
       }
     </style>
   </head>
@@ -70,9 +82,13 @@
             </div>
           </form>
         </div>
-      </div>  
+      </div> 
       
     </div>
+
+    <canvas class="head-background"></canvas>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.1.0/particles.min.js"></script>
     
     <script>
       $(function() {
@@ -205,6 +221,14 @@
             html += "<li class='list-group-item text-dark'>" + data[i] + "</li>";
           }
           $users.html(html);
+        });
+
+        /***** Particles Configuration *****/
+        Particles.init({
+          selector: '.head-background',
+          connectParticles: true,
+          color: '#ffffff',
+          maxParticles: 110
         });
         
       });
