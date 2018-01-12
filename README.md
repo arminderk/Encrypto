@@ -4,7 +4,7 @@ This is an experimental application which I developed to get a better understand
 
 Please feel free to try it out by clicking the link below!
 
-* Live Preview: [Encrypto](https://encrypto.herokuapp.com)
+[Try Encrypto](https://encrypto.herokuapp.com)
 
 
 # Technologies Used:
