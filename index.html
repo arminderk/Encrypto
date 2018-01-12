@@ -6,43 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+    <!-- Styles.css -->
+    <link rel="stylesheet" href="styles.css">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <!-- Socket.io -->
     <script src="/socket.io/socket.io.js"></script>
     <!-- Roboto Font -->
     <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
-    <style>
-      html {
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        padding: 0;
-        font-size: 16px;
-        margin-top: 30px;
-      }
-      h1 {
-        font-family: 'Exo', sans-serif;
-        font-size: 3em;
-      }
-      .head-background {
-        position: absolute;
-        display: block;
-        top: 0;
-        left: 0;
-        z-index: -20;
-      }
-    </style>
   </head>
   
   <body style="background: #5281af">
 
     <h1 class="display-5 text-center" style="margin-bottom: 50px">Welcome to Encrypto</h1>
 
-    <h2 class="font-italic text-center" style="margin-bottom: 40px" id="topic"></h2>
+    <h2 class="font-italic text-center" id="topic"></h2>
 
-    <div class="row info" style=" width: 60%; margin: 80px auto; padding: 3%; border-radius: 20px; color: #fff; background: #af5281">
+    <div class="row info">
         <div class="col-md-12  text-center" style="margin-bottom: 50px;">
           <h3>hello world!</h3><br>
           <p>
@@ -54,8 +34,8 @@
           </p>
         </div>
 
-        <div class="user-container" style="margin: 0 auto; color: #000; background: #E8E8E8; width: 50%; padding: 2.75%; border-radius: 25px">
-          <div id="user-alert" class="alert alert-danger" style="margin-bottom: 20px">
+        <div class="user-container">
+          <div id="user-alert" class="alert alert-danger">
             <span>Please Enter a Username</span>
           </div>
   
