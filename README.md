@@ -11,6 +11,8 @@ Please feel free to try it out by clicking the link below!
 
 * Node.js
 * Socket.io 
-* Express.js 
+* Express.js
+* Particles.js
 * HTML
+* CSS
 * Bootstrap
