@@ -5,4 +5,10 @@ This is an experimental application which I developed to get a better understand
 * Live Preview: [Encrypto](https://encrypto.herokuapp.com)
 
 
-#### Technologies Used: Node.js, Socket.io, Express.js, HTML, and Bootstrap
+# Technologies Used:
+
+* Node.js
+* Socket.io 
+* Express.js 
+* HTML
+* Bootstrap
