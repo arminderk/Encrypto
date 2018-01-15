@@ -16,79 +16,76 @@
     <link href="https://fonts.googleapis.com/css?family=Exo" rel="stylesheet">
   </head>
   
-  <body style="background: #5281af">
+  <body>
 
-    <h1 class="display-5 text-center" style="margin-bottom: 50px">Welcome to Encrypto</h1>
+      <div id="particles-js"></div>
 
-    <h2 class="font-italic text-center" id="topic"></h2>
-
-    <div class="row info">
-        <div class="col-md-12  text-center" style="margin-bottom: 50px;">
-          <h3>hello world!</h3><br>
-          <p>
-            This is a chat application in which you discuss the topic above. This topic changes
-            everytime a new user joins the chat room. Your username will be encrypted so you
-            don't have to worry about privacy. You can choose to decrypt the username by pressing
-            the "decrypt username" button.
-            <strong>Enjoy!</strong>
-          </p>
-        </div>
-
-        <div class="user-container">
-          <div id="user-alert" class="alert alert-danger">
-            <span>Please Enter a Username</span>
-          </div>
-  
-          <div id="userFormArea" class="row">
-            <div class="col-md-12">
-              <form id="userForm">
-                <div class="form-group">
-                  <label>Enter an username:</label>
-                  <input class="form-control" id="username">
-                  <br>
-                  <input type="submit" class="btn btn-primary" value="Join">
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-    </div>
-
-    <div class="container">
+      <h1 class="display-5 text-center">Welcome to Encrypto</h1>
       
-      <div id="messageArea" class="row">
-        <div class="col-md-12" style="margin-bottom: 25px">
-            <button id="decrypt" class="btn btn-success">Decrypt Username</button>
-        </div>
+      <h2 class="font-italic text-center" id="topic"></h2>
 
-        <div class="col-md-4" style="margin-bottom: 80px">
-          <div class="card">
-            <div class="card-body bg-info">
-              <h3 class="text-white" style="margin-bottom: 15px">Users Online</h3>
-              <ul class="list-group" id="users"></ul>
+      <div class="row info">
+          <div class="col-md-12  text-center" style="margin-bottom: 50px;">
+            <h3>hello world!</h3><br>
+            <p>
+              This is a chat application in which you discuss the topic above. This topic changes
+              everytime a new user joins the chat room. Your username will be encrypted so you
+              don't have to worry about privacy. You can choose to decrypt the username by pressing
+              the "decrypt username" button.
+              <strong>Enjoy!</strong>
+            </p>
+          </div>
+
+          <div class="user-container">
+            <div id="user-alert" class="alert alert-danger">
+              <span>Please Enter a Username</span>
+            </div>
+    
+            <div id="userFormArea" class="row">
+              <div class="col-md-12">
+                <form id="userForm">
+                  <div class="form-group">
+                    <label>Enter an username:</label>
+                    <input class="form-control" id="username">
+                    <br>
+                    <input type="submit" class="btn btn-primary" value="Join">
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
+      </div>
 
-        <div class="col-md-8">
-          <div class="chat" id="chat"></div>
-          <form id="messageForm">
-            <div class="form-group">
-              <label>Your message</label>
-              <textarea class="form-control" id="message">
-              </textarea>
-              <br>
-              <input type="submit" class="btn btn-primary" value="Send">
+      <div class="container">
+        
+        <div id="messageArea" class="row">
+          <div class="col-md-12" style="margin-bottom: 25px">
+              <button id="decrypt" class="btn btn-success">Decrypt Username</button>
+          </div>
+
+          <div class="col-md-4" style="margin-bottom: 80px">
+            <div class="card">
+              <div class="card-body bg-info">
+                <h3 class="text-white" style="margin-bottom: 15px">Users Online</h3>
+                <ul class="list-group" id="users"></ul>
+              </div>
             </div>
-          </form>
-        </div>
-      </div> 
-      
-    </div>
+          </div>
 
-    <canvas class="head-background"></canvas>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.1.0/particles.min.js"></script>
+          <div class="col-md-8">
+            <div class="chat" id="chat"></div>
+            <form id="messageForm">
+              <div class="form-group">
+                <label>Your message</label>
+                <textarea class="form-control" id="message">
+                </textarea>
+                <br>
+                <input type="submit" class="btn btn-primary" value="Send">
+              </div>
+            </form>
+          </div>
+        </div>  
+      </div>
     
     <script>
       $(function() {
@@ -228,17 +225,12 @@
           }
           $users.html(html);
         });
-
-        /***** Particles Configuration *****/
-        Particles.init({
-          selector: '.head-background',
-          connectParticles: true,
-          color: '#ffffff',
-          maxParticles: 150
-        });
         
       });
     </script>
+
+    <script type="text/javascript" src="particles.js"></script>
+    <script type="text/javascript" src="app.js"></script>
     
   </body>
   
